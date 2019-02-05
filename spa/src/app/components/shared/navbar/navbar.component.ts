@@ -19,14 +19,7 @@ export class NavbarComponent implements OnInit {
   }
 
   buscarHeroe(consulta: string){
-    console.log(consulta);
-    let id:number = this.heroesService.buscarHeroe(consulta);
-    console.log("Heroe devuelto " + id);
-    this.mostrarHeroe(id)
-  }
-
-  mostrarHeroe(id:number){
-    this.router.navigate(['hero/busqueda', id]);
+    this.router.navigate(['heroes/busqueda', consulta]);
   }
 
 }

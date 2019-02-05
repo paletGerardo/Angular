@@ -4,14 +4,15 @@ import {HomeComponent} from "./components/home/home.component";
 import {AboutComponent} from "./components/about/about.component";
 import {HeroesComponent} from "./components/heroes/heroes.component";
 import {HeroeComponent} from "./components/heroe/heroe.component";
+import {BuscarHeroesComponent} from "./components/heroes/buscar-heroes/buscar-heroes.component";
 
 const APP_ROUTES: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {path: 'heroes', component: HeroesComponent},
+  {path: 'heroes/busqueda/:consulta', component: BuscarHeroesComponent},
   {path: 'heroes/hero/:id', component: HeroeComponent},
   {path: 'hero/:id', component: HeroeComponent},
-  {path: 'hero/busqueda/:id', component: HeroeComponent},
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 

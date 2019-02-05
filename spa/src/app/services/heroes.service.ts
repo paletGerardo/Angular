@@ -67,44 +67,24 @@ export class HeroesService {
     return this.heroes[i];
   }
 
-  buscarHeroe( consulta:string ): number{
+  buscarHeroe( consulta:string ): Heroe[]{
 
-    console.log("Buscando Heroe...");
+    let listaHeroes:Heroe[] = [];
 
-     consulta = consulta.toLowerCase();
+    consulta = consulta.toLowerCase();
 
     for(let unHeroe of this.heroes){
-      console.log("Recorriendo listado...");
+
       let nombre = unHeroe.nombre.toLowerCase();
 
       if (nombre.indexOf( consulta ) >= 0){
-        console.log("Heroe encontrado..." + unHeroe.nombre);
-        return this.heroes.lastIndexOf(unHeroe);
+        listaHeroes.push(unHeroe);
       }
     }
 
-    return null;
+    return listaHeroes;
 
   }
-
-  // buscarHeroe( consulta:string ): Heroe[]{
-  //
-  //   let listaHeroes:Heroe[] = [];
-  //
-  //   consulta = consulta.toLowerCase();
-  //
-  //   for(let unHeroe of this.heroes){
-  //
-  //     let nombre = unHeroe.nombre.toLowerCase();
-  //
-  //     if (nombre.indexOf( consulta ) >= 0){
-  //       listaHeroes.push(unHeroe);
-  //     }
-  //   }
-  //
-  //   return listaHeroes;
-  //
-  // }
 
 }
 
