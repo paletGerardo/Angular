@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {HeroesService, Heroe} from "../../services/heroes.service";
 import {Router} from "@angular/router";
+import {any} from "codelyzer/util/function";
+
+
 
 @Component({
   selector: 'app-heroes',

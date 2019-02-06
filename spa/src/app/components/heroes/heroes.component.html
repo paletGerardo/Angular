@@ -1,4 +1,4 @@
-<div class="container pb-5">
+<div class="container pb-5 pt-5">
 
   <h1>Heroes
     <small>Marvel y DC</small>
@@ -7,19 +7,7 @@
 
   <div class="card-columns" >
 
-    <div class="card animated fadeIn" *ngFor="let heroe of heroes; let i = index">
-      <img src="{{heroe.img}}" class="card-img-top" alt="{{heroe.img}}">
-      <div class="card-body">
-
-        <h5 class="card-title">{{heroe.nombre}}</h5>
-        <p class="card-text">{{heroe.bio}}</p>
-        <p class="card-text">{{heroe.aparicion}}</p>
-
-        <button (click)="verHeroe(i)" class="btn btn-outline-primary btn-block">Ver mas...</button>
-
-        <a class="btn btn-outline-primary btn-block" [routerLink]="['/heroes/hero', i]">Ver mas links...</a>
-      </div>
-    </div>
+    <app-tarjeta-heroe (heroeSeleccionado)="verHeroe($event)" [heroe]="heroe" [index]="i" *ngFor="let heroe of heroes; let i = index"></app-tarjeta-heroe>
 
   </div>
 

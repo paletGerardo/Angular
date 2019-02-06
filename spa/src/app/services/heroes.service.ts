@@ -73,12 +73,15 @@ export class HeroesService {
 
     consulta = consulta.toLowerCase();
 
-    for(let unHeroe of this.heroes){
+    for(let i=0; i < this.heroes.length; i++){
 
-      let nombre = unHeroe.nombre.toLowerCase();
+      let heroe = this.heroes[i];
+
+      let nombre = heroe.nombre.toLowerCase();
 
       if (nombre.indexOf( consulta ) >= 0){
-        listaHeroes.push(unHeroe);
+        heroe.index = i;
+        listaHeroes.push(heroe);
       }
     }
 
@@ -92,6 +95,7 @@ import {Injectable} from "@angular/core";
 
 export interface Heroe {
 
+  index?:number;
   nombre: String;
   bio: String;
   img: String;
