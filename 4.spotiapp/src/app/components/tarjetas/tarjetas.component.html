@@ -1,0 +1,9 @@
+<div class="card-columns">
+  <div (click)="verPais(pais)" class="card puntero" *ngFor="let pais of paises">
+    <img [src]="pais.images | noimagen" class="card-img-top" alt="...">-->
+    <div class="card-body">
+      <h5 class="card-title">{{pais.name}}</h5>
+      <p class="card-text">{{pais.timezones}}</p>
+    </div>
+  </div>
+</div>
