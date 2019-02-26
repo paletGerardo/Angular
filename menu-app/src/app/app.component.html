@@ -5,9 +5,9 @@
 -->
 <div id="CATEGORIAS">
   <div class="CATEGORIAS_items">
-      <div class="CATEGORIAS_item" *ngFor="let categoria of categorias" (click)="cambiarCategoria(categoria.id)">
-        <img [src]="'assets/img/categorias/'+ categoria.imagen +'.png'" alt="">
-      </div>
+    <div class="CATEGORIAS_item" *ngFor="let categoria of categorias" (click)="cambiarCategoria(categoria.id)">
+      <img [src]="'assets/img/categorias/'+ categoria.imagen +'.png'" alt="">
+    </div>
   </div>
 </div>
 
@@ -18,26 +18,85 @@
 -->
 
 
-<div id="PRODUCTOS">
-  <div class="PRODUCTOS_container" >
-    <div class="cadaSlide" *ngIf="productosActuales[index].idCategoria == categoriaActual">
+<section id="prd">
+  <section class="prd-container">
+
+    <section class="cadaSlide" *ngIf="productosActuales[index].idCategoria == categoriaActual">
       <div class="card">
         <div class="cadaSlide-titulo">{{productosActuales[index].nombre}}:</div>
         <div class="cadaSlide-descrip">
           <p><strong> Sabor: </strong>{{productosActuales[index].sabor}}</p>
           <p><strong> Descripción: </strong>{{productosActuales[index].descripcion}}</p>
           <p><strong> Graduación Alcohólica: </strong>{{productosActuales[index].graduacion}}</p>
-        </div>
-        <div class="botones d-flex justify-content-around">
-          <button class="btn btn-primary btn-lg" (click)="agregarEnLista(productosActuales[index].nombre, productosActuales[index].precio)" onclick = "this.disabled = true">  {{textoBtn}} </button>
+
           <strong class="estilo_precio"> $ {{productosActuales[index].precio}} </strong>
         </div>
+        <div class="botones d-flex">
+          <button class="btn btn-primary" (click)="agregarEnLista(productosActuales[index].nombre, productosActuales[index].precio, productosActuales[index].id)"><strong><h3>AGREGAR</h3>
+          </strong></button>
+
+        </div>
       </div>
-      <div class="cadaSlide-imagen col-6"><img [src]="'assets/img/productos/' + productosActuales[index].imagen + '.png'" alt=""></div>
+      <div class="cadaSlide-imagen col-6"><img
+        [src]="'assets/img/productos/' + productosActuales[index].imagen + '.png'" alt=""></div>
+    </section>
+    <!--
+    		==================================================================
+    			botones laterales
+    		==================================================================
+    -->
+    <section class="prd-btns">
+      <div class="btns-cambio">
+        <button class="left" (click)="cambiarSlide('left')"></button>
+        <button class="right" (click)="cambiarSlide('rigth')"></button>
+      </div>
+      <div class="btns-pedido">
+        <div class="loPedido">
+          <div (click)="mostrarLista = !mostrarLista"><img src="assets/img/pedido.png" alt=""></div>
+        </div>
+      </div>
+    </section>
+    <!--
+    		==================================================================
+    			Lista de pedidos
+    		==================================================================
+    -->
+    <section class="">
+
+      <div id="lista" *ngIf="mostrarLista">
+
+        <div id="listaCuerpo" class="d-flex flex-column">
+          <ul class="listaItem d-flex flex-column">
+            <h3 class="titulo">- Tu lista de pedidos -</h3>
+            <li class="listar_elementos d-flex justify-content-around" *ngFor="let item of listaDePedidos, let index =index">
+              <span class="mostrar_descripcion">{{item.nombre}} </span>
+              <span class="mostrar_cantidad">{{item.cantidad}}</span>
+              <span class="modificar_cantidad">
+                  <button type="button" class="btn btn-primary" (click)="agregarCantidad(index)">+</button>
+                  <button type="button" class="btn btn-primary" (click)="quitarCantidad(index)">-</button>
+                  <button type="button" class="btn btn-primary" (click)="quitarDeLista(index)">quitar</button>
+              </span>
+              <span class="precio">$ {{item.precio}} x {{item.cantidad}}</span>
+            </li>
+          </ul>
+          <div id="listaFooter" class="d-flex">
+            <div id="aceptar" (click)="mostrarGracias = !mostrarGracias"><img src="assets/img/aceptar.png"></div>
+            <div class="precioTotal d-flex justify-content-end">TOTAL: $ {{precioTotal}}</div>
+            <div id="ocultar" class="d-flex justify-content-end" (click)="mostrarLista = !mostrarLista">
+              <img src="assets/img/regresar.png" class="alinear-abajor-derecha">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </section>
+
+    <div class="lista" *ngIf="mostrarGracias">
+      <div v-show="graciasMensaje"><img src="assets/img/gracias_pedido.png"></div>
     </div>
-    <button class="left" (click)="cambiarSlide('left')"></button>
-    <button class="right" (click)="cambiarSlide('rigth')"></button>
-  </div>
-</div>
+
+</section>
 
 
