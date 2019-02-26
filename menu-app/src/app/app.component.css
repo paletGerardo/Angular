@@ -418,3 +418,7 @@ h3{
   margin: 0 auto;
   padding: 0 auto;
 }
+
+.d-none{
+  display: none;
+}

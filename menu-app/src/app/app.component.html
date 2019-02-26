@@ -1,4 +1,3 @@
-
 <!--
 		==================================================================
 			CATEGORIAS
@@ -6,7 +5,7 @@
 -->
 <div id="CATEGORIAS">
   <div class="CATEGORIAS_items">
-      <div class="CATEGORIAS_item" *ngFor="let categoria of categorias">
+      <div class="CATEGORIAS_item" *ngFor="let categoria of categorias" (click)="cambiarCategoria(categoria.id)">
         <img [src]="'assets/img/categorias/'+ categoria.imagen +'.png'" alt="">
       </div>
   </div>
@@ -17,43 +16,28 @@
 			PRODUCTOS
 		==================================================================
 -->
+
+
 <div id="PRODUCTOS">
-  <div class="PRODUCTOS_container">
-    <!--<slideshow  [imageUrls] = " imageUrls " > </slideshow >-->
-    <slideshow
-    [height] = "height"
-    [width] = "'350px'"
-    [minHeight] = " '350px' "
-    [autoPlay] = " false "
-    [showArrows] = " true "
-    [imageUrls] = " imageUrlArray "
-    [lazyLoad] = " imageUrlArray?.length> 1 "
-    [autoPlayWaitForLazyLoad] = " true " >
-  </slideshow>
+  <div class="PRODUCTOS_container" >
+    <div class="cadaSlide" *ngIf="productosActuales[index].idCategoria == categoriaActual">
+      <div class="card">
+        <div class="cadaSlide-titulo">{{productosActuales[index].nombre}}:</div>
+        <div class="cadaSlide-descrip">
+          <p><strong> Sabor: </strong>{{productosActuales[index].sabor}}</p>
+          <p><strong> Descripción: </strong>{{productosActuales[index].descripcion}}</p>
+          <p><strong> Graduación Alcohólica: </strong>{{productosActuales[index].graduacion}}</p>
+        </div>
+        <div class="botones d-flex justify-content-around">
+          <button class="btn btn-primary btn-lg" (click)="agregarEnLista(productosActuales[index].nombre, productosActuales[index].precio)" onclick = "this.disabled = true">  {{textoBtn}} </button>
+          <strong class="estilo_precio"> $ {{productosActuales[index].precio}} </strong>
+        </div>
+      </div>
+      <div class="cadaSlide-imagen col-6"><img [src]="'assets/img/productos/' + productosActuales[index].imagen + '.png'" alt=""></div>
+    </div>
+    <button class="left" (click)="cambiarSlide('left')"></button>
+    <button class="right" (click)="cambiarSlide('rigth')"></button>
   </div>
 </div>
 
-<!--
-		==================================================================
-			<div class="slideContainer" id="PRODUCTOS_slide">
-        <div class="cadaSlide" *ngFor="let producto of productos">
-          <div class="card">
-            <div class="cadaSlide-titulo">{{producto.nombre}}:</div>
-            <div class="cadaSlide-descrip">
-              <p><strong> Sabor: </strong>{{producto.sabor}}</p>
-              <p><strong> Descripción: </strong>{{producto.descripcion}}</p>
-              <p><strong> Graduación Alcohólica: </strong>{{producto.graduacion}}</p>
-            </div>
-            <div class="botones d-flex justify-content-around">
-              <button class="btn btn-primary btn-lg" (click)="agregarEnLista(producto.nombre, producto.precio)" onclick = "this.disabled = true">  {{textoBtn}} </button>
-              <strong class="estilo_precio"> $ {{producto.precio}} </strong>
-            </div>
-          </div>
-          <div class="cadaSlide-imagen col-6"><img [src]="'assets/img/productos/' + producto.imagen + '.png'" alt=""></div>
-        </div>
-      <button class="left"></button>
-      <button class="right"></button>
-    </div>
-		==================================================================
--->
 
